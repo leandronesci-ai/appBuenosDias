@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi amor ❤️</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #4a154b;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 320px;
+      margin: 20px;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+    p { font-size: 1.1rem; line-height: 1.5; }
+    button {
+      background: #ff4b7d;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+  <!-- SDK de OneSignal -->
+  <script src="https://onesignal.com" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "TU_APP_ID_DE_ONESIGNAL", // Reemplazar luego
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h1>¡Hola amor! ❤️</h1>
+    <p id="mensaje-dia">Quiero que sepas que te amo muchísimo y me haces muy feliz todos los días.</p>
+    <button onclick="OneSignal.Notifications.requestPermission()">Activar mis buenos días 🔔</button>
+  </div>
+</body>
+</html>

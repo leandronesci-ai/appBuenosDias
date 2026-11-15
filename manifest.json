@@ -1,0 +1,15 @@
+{
+  "name": "Buenos Días Amor",
+  "short_name": "Para Vos ❤️",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fecfef",
+  "theme_color": "#ff4b7d",
+  "icons": [
+    {
+      "src": "https://flaticon.com",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+    ]
+}
