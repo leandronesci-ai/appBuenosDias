@@ -39,22 +39,26 @@
       font-weight: bold;
     }
   </style>
-  <!-- SDK de OneSignal -->
   <script src="https://onesignal.com" defer></script>
   <script>
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     OneSignalDeferred.push(async function(OneSignal) {
       await OneSignal.init({
-        appId: "198fd934-625c-40d0-b679-d375844baaa0", // Reemplazar luego
+        appId: "198fd934-625c-40d0-b679-d375844baaa0",
       });
     });
+
+    function activarAvisos() {
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.Slidedown.promptPush();
+        await OneSignal.Notifications.requestPermission();
+      });
+    }
   </script>
 </head>
 <body>
   <div class="card">
     <h1>¡Hola amor! ❤️</h1>
     <p id="mensaje-dia">Quiero que sepas que te amo muchísimo y me haces muy feliz todos los días.</p>
-    <button onclick="OneSignal.Notifications.requestPermission()">Activar mis buenos días 🔔</button>
+    <button onclick="activarAvisos()">Activar mis buenos días 🔔</button>
   </div>
-</body>
-</html>
