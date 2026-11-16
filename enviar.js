@@ -25,7 +25,9 @@ const elegir = (lista) => lista[Math.floor(Math.random() * lista.length)];
 const fraseFinal = `${elegir(saludos)} ${elegir(mensajes)} ${elegir(cierres)}`;
 
 async function enviarNotificacion() {
-  const url = "https://" + "://onesignal.com" + "/notifications";;
+  const dominio = "api." + "onesignal" + ".com";
+  const ruta = "/api/v1/" + "notifications";
+  const url = "https://" + dominio + ruta;
   const response = await fetch(url, {
     method: "POST",
     headers: {
