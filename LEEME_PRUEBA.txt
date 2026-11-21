@@ -1,0 +1,25 @@
+PRUEBA DE NOTIFICACIONES — BUENOS DÍAS AMOR
+
+ESTA VERSIÓN SOLO ES PARA PROBAR TU ANDROID. Todavía no configura mensajes diarios ni recordatorios.
+
+PASO 1 — PUBLICAR EN GITHUB PAGES (obligatorio; no tengo acceso a tu cuenta GitHub para subirlo por vos)
+1. En la PC, descomprimí este ZIP.
+2. Abrí el repositorio de GitHub que ya publica tu página.
+3. Subí/reemplazá estos tres archivos en la misma carpeta raíz donde está index.html: index.html, OneSignalSDKWorker.js y manifest.json.
+4. Esperá a que GitHub Pages termine de publicar y abrí la URL pública HTTPS en Chrome de tu Android.
+
+PASO 2 — ACTIVAR EL DISPOSITIVO
+1. Tocá “Activar notificaciones de prueba”.
+2. Aceptá el permiso de Android/Chrome.
+3. La página debe mostrar “Permiso concedido”, un ID de suscripción y “Suscripción activa”. Si no aparece, no sigas al envío: mandame exactamente lo que muestra el estado.
+
+PASO 3 — ENVIAR UNA NOTIFICACIÓN REAL
+1. Entrá a OneSignal con tu cuenta y abrí la app con App ID 198fd934-625c-40d0-b679-d375844baaa0.
+2. Andá a Audience / Subscriptions (el nombre puede variar) y buscá la suscripción recién creada por su ID.
+3. Usá la opción de enviar una notificación de prueba a esa suscripción individual. Título: “Prueba Buenos Días Amor”. Texto: “Lean, si ves esto, la notificación llegó correctamente ❤️”.
+4. Dejá Chrome en segundo plano o cerralo y comprobá si aparece la notificación en el teléfono.
+
+IMPORTANTE DE SEGURIDAD
+La clave REST privada de OneSignal que se compartió anteriormente debe revocarse y regenerarse antes de configurar el envío desde servidor. No la incluyas en estos archivos, en GitHub ni en el chat. El App ID incluido aquí es público y no es la clave REST.
+
+No consideramos la prueba superada solo porque el permiso esté concedido: tiene que aparecer la notificación real en Android.
