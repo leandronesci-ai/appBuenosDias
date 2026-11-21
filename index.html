@@ -9,7 +9,11 @@ window.ONESIGNAL_APP_ID="198fd934-625c-40d0-b679-d375844baaa0";
 window.OneSignalDeferred=window.OneSignalDeferred||[];
 function setStatus(text){const e=document.getElementById('estado');if(e)e.textContent=text;}
 function refreshStatus(OS){try{const sub=OS.User&&OS.User.PushSubscription;const permission=OS.Notifications.permission?'Permiso concedido':'Permiso no concedido';const id=sub&&sub.id?sub.id:'ID de suscripción todavía no disponible';const active=sub&&sub.optedIn?'Suscripción activa':'Suscripción todavía no activa';setStatus(permission+' · '+active+' · '+id);}catch(e){setStatus('No se pudo leer el estado: '+e.message);}}
-window.OneSignalDeferred.push(async function(OS){try{await OS.init({appId:window.ONESIGNAL_APP_ID});await OS.login('lean-prueba-notificaciones');refreshStatus(OS);if(OS.User&&OS.User.PushSubscription){OS.User.PushSubscription.addEventListener('change',function(){refreshStatus(OS);});}}catch(e){setStatus('Error al conectar OneSignal: '+(e.message||e));}});
+window.OneSignalDeferred.push(async function(OS){try{await OS.init({
+  appId: window.ONESIGNAL_APP_ID,
+  serviceWorkerPath: "/appBuenosDias/OneSignalSDKWorker.js",
+  serviceWorkerParam: { scope: "/appBuenosDias/" }
+});;await OS.login('lean-prueba-notificaciones');refreshStatus(OS);if(OS.User&&OS.User.PushSubscription){OS.User.PushSubscription.addEventListener('change',function(){refreshStatus(OS);});}}catch(e){setStatus('Error al conectar OneSignal: '+(e.message||e));}});
 function activarNotificaciones(){window.OneSignalDeferred.push(async function(OS){try{await OS.Notifications.requestPermission();refreshStatus(OS);if(OS.Notifications.permission)alert('Permiso concedido. Ahora hay que enviar una notificación real desde el panel de OneSignal para comprobar la entrega.');else alert('No se concedió el permiso. Revisá los permisos de notificaciones de Chrome en Android.');}catch(e){setStatus('Error: '+(e.message||e));alert('No se pudo activar: '+(e.message||e));}});}
 </script></head>
 <body><main class="card"><h1>¡Hola, Lean! ❤️</h1><p>Esta es una página temporal para probar que las notificaciones push lleguen a tu Android antes de seguir desarrollando la aplicación.</p><button onclick="activarNotificaciones()">Activar notificaciones de prueba 🔔</button><p id="estado" class="status" role="status">Conectando con OneSignal…</p><p class="hint">Abrí esta página con Chrome desde la URL HTTPS de GitHub Pages y aceptá el permiso. Después hay que enviar una notificación de prueba desde OneSignal.</p></main></body></html>
