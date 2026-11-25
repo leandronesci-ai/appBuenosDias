@@ -1,19 +1,38 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ff4b7d"><title>Prueba de notificaciones ❤️</title><link rel="manifest" href="manifest.json">
-<style>*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;margin:0;padding:24px;display:grid;place-items:center;text-align:center;color:#4a154b;background:linear-gradient(135deg,#ff9a9e,#fecfef)}.card{width:min(100%,420px);padding:30px 24px;background:#ffffffed;border-radius:24px;box-shadow:0 12px 35px #7a17451f}h1{font-size:1.7rem}p{font-size:1.04rem;line-height:1.6}button{background:#ff4b7d;color:white;border:0;border-radius:24px;padding:13px 20px;font-size:1rem;font-weight:700;cursor:pointer}.hint{font-size:.85rem;color:#76536f}.status{font-size:.9rem;background:#fff0f6;padding:12px;border-radius:12px;overflow-wrap:anywhere}</style>
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-window.ONESIGNAL_APP_ID="198fd934-625c-40d0-b679-d375844baaa0";
-window.OneSignalDeferred=window.OneSignalDeferred||[];
-function setStatus(text){const e=document.getElementById('estado');if(e)e.textContent=text;}
-function refreshStatus(OS){try{const sub=OS.User&&OS.User.PushSubscription;const permission=OS.Notifications.permission?'Permiso concedido':'Permiso no concedido';const id=sub&&sub.id?sub.id:'ID de suscripción todavía no disponible';const active=sub&&sub.optedIn?'Suscripción activa':'Suscripción todavía no activa';setStatus(permission+' · '+active+' · '+id);}catch(e){setStatus('No se pudo leer el estado: '+e.message);}}
-window.OneSignalDeferred.push(async function(OS){try{await OS.init({
-  appId: window.ONESIGNAL_APP_ID,
-  serviceWorkerPath: "/appBuenosDias/OneSignalSDKWorker.js",
-  serviceWorkerParam: { scope: "/appBuenosDias/" }
-});;await OS.login('lean-prueba-notificaciones');refreshStatus(OS);if(OS.User&&OS.User.PushSubscription){OS.User.PushSubscription.addEventListener('change',function(){refreshStatus(OS);});}}catch(e){setStatus('Error al conectar OneSignal: '+(e.message||e));}});
-function activarNotificaciones(){window.OneSignalDeferred.push(async function(OS){try{await OS.Notifications.requestPermission();refreshStatus(OS);if(OS.Notifications.permission)alert('Permiso concedido. Ahora hay que enviar una notificación real desde el panel de OneSignal para comprobar la entrega.');else alert('No se concedió el permiso. Revisá los permisos de notificaciones de Chrome en Android.');}catch(e){setStatus('Error: '+(e.message||e));alert('No se pudo activar: '+(e.message||e));}});}
-</script></head>
-<body><main class="card"><h1>¡Hola, Lean! ❤️</h1><p>Esta es una página temporal para probar que las notificaciones push lleguen a tu Android antes de seguir desarrollando la aplicación.</p><button onclick="activarNotificaciones()">Activar notificaciones de prueba 🔔</button><p id="estado" class="status" role="status">Conectando con OneSignal…</p><p class="hint">Abrí esta página con Chrome desde la URL HTTPS de GitHub Pages y aceptá el permiso. Después hay que enviar una notificación de prueba desde OneSignal.</p></main></body></html>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ff4b7d"><title>Para mi amor ❤️</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;margin:0;padding:24px;display:grid;place-items:center;text-align:center;color:#4a154b;background:linear-gradient(135deg,#ff9a9e,#fecfef)}.card{width:min(100%,390px);padding:30px 24px;background:#ffffffed;border-radius:24px;box-shadow:0 12px 35px #7a17451f}h1{font-size:1.7rem}p{font-size:1.08rem;line-height:1.6}button{background:#ff4b7d;color:white;border:0;border-radius:24px;padding:13px 20px;font-size:1rem;font-weight:700;cursor:pointer}.hint{font-size:.85rem;color:#76536f}
+  </style>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    // Reemplazá este valor por el App ID de tu aplicación de OneSignal.
+    window.ONESIGNAL_APP_ID = "198fd934-625c-40d0-b679-d375844baaa0";
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      if (!window.ONESIGNAL_APP_ID || window.ONESIGNAL_APP_ID.startsWith("REEMPLAZAR_")) return;
+      await OneSignal.init({ appId: window.ONESIGNAL_APP_ID });
+      // Identificador fijo para dirigir los mensajes solo a esta instalación/usuaria.
+      await OneSignal.login("novia-buenos-dias");
+    });
+    async function activarNotificaciones(){
+      if (!window.ONESIGNAL_APP_ID || window.ONESIGNAL_APP_ID.startsWith("REEMPLAZAR_")) {
+        alert("Falta configurar el App ID de OneSignal. Consultá el archivo README."); return;
+      }
+      window.OneSignalDeferred.push(async function(OneSignal){
+        await OneSignal.Notifications.requestPermission();
+        const granted = OneSignal.Notifications.permission;
+        alert(granted ? "¡Notificaciones activadas! ❤️" : "No se activaron los permisos. Revisá la configuración del navegador.");
+      });
+    }
+  </script>
+</head>
+<body><main class="card">
+  <h1>¡Hola, amor! ❤️</h1>
+  <p>Quiero que sepas que te amo muchísimo y que me hacés muy feliz todos los días.</p>
+  <button onclick="activarNotificaciones()">Activar mis notificaciones 🔔</button>
+  <p class="hint">Aceptá el permiso cuando el celular te lo pregunte. En iPhone, abrí la página desde Safari y agregala a la pantalla de inicio antes de activar las notificaciones.</p>
+</main></body></html>

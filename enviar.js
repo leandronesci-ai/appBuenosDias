@@ -25,14 +25,11 @@ const elegir = (lista) => lista[Math.floor(Math.random() * lista.length)];
 const fraseFinal = `${elegir(saludos)} ${elegir(mensajes)} ${elegir(cierres)}`;
 
 async function enviarNotificacion() {
-  const dominio = "api." + "onesignal" + ".com";
-  const ruta = "/api/v1/" + "notifications";
-  const url = "https://" + dominio + ruta;
-  const response = await fetch(url, {
+  const response = await fetch("https://onesignal.com", {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Authorization": `Key ${process.env.ONESIGNAL_API_KEY}`
+      "Authorization": `Basic ${process.env.ONESIGNAL_API_KEY}`
     },
     body: JSON.stringify({
       app_id: process.env.ONESIGNAL_APP_ID,
@@ -42,7 +39,7 @@ async function enviarNotificacion() {
     })
   });
   const data = await response.json();
-  console.log("Respuesta:", fraseFinal, data);
+  console.log("Notificación enviada:", fraseFinal, data);
 }
 
 enviarNotificacion();
